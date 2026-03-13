@@ -22,7 +22,16 @@ const transactionSchema = new mongoose.Schema({
         },
         default: "PENDING"
     },
+    idempotencyKey: {
+        type: String,
+        required: [true, "Idempotency key is required"],
+        unique: true,
+        index: true
+    },
 })
 
+const transactionModel = mongoose.model('transaction', transactionSchema)
+
+module.exports = transactionModel
 
 
